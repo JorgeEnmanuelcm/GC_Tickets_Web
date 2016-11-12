@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
+
+    <br /> 
     <br />
     <br />
     <br />
@@ -12,7 +13,6 @@
     <%--Login--%>
     <link href="/Css/Login.css" rel="stylesheet" />
     <script src="/Js/Login.js"></script>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">

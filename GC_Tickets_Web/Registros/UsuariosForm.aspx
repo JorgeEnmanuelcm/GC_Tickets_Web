@@ -104,7 +104,7 @@
             <asp:Label ID="DireccionLabel" For="DireccionTexBox" runat="server" Font-Bold="True" Text="Direccion:"></asp:Label>
         </div>
         <div class="col-md-6 col-xs-8">
-            <asp:TextBox ID="DireccionTextBox" runat="server" CssClass="form-control" placeholder="Direccion" TextMode="MultiLine" Height="69px" Width="273px" MaxLength="31"></asp:TextBox>
+            <asp:TextBox ID="DireccionTextBox" runat="server" CssClass="form-control" placeholder="Direccion" MaxLength="31"></asp:TextBox>
         </div>
     </div>
     <br />

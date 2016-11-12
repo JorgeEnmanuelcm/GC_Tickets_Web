@@ -61,7 +61,7 @@ namespace GC_Tickets_Web.Registros
         {
             if (TipoEvento.UnicaDescripcion(DescripcionTextBox.Text))
             {
-                Utilities.ShowToastr(this, "error", "Este tipo de evento ya existe!", "error");
+                Utilities.ShowToastr(this, "error", "Ese tipo de evento ya existe!", "error");
                 DescripcionTextBox.Text = string.Empty;
             }
             else

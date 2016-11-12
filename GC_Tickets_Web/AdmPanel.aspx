@@ -27,13 +27,13 @@
                 <h3>Usuarios <span class="label label-default"></span></h3>
                 <div class="col-lg-12">
                     <p>
-                        <a href="#" class="btn btn-sq-lg btn-primary">
+                        <a href="/Registros/UsuariosForm.aspx" class="btn btn-sq-lg btn-primary">
                             <i class="fa fa-users fa-5x"></i>
                             <br />
                             Registro Usuarios
                             <br />
                         </a>
-                        <a href="#" class="btn btn-sq-lg btn-success">
+                        <a href="/Consultas/UsuariosCForm.aspx" class="btn btn-sq-lg btn-success">
                             <i class="fa fa-users fa-5x"></i>
                             <br />
                             Consulta Usuarios
@@ -58,14 +58,14 @@
                 <h3>Tipos de Eventos <span class="label label-default"></span></h3>
                 <div class="col-lg-12">
                     <p>
-                        <a href="#" class="btn btn-sq-lg btn-primary">
+                        <a href="/Registros/TipoEventoForm.aspx" class="btn btn-sq-lg btn-primary">
                             <i class="fa fa-align-left fa-5x"></i>
                             <br />
                             Registro Tipos de
                             <br />
                             Eventos
                         </a>
-                        <a href="#" class="btn btn-sq-lg btn-success">
+                        <a href="/Consultas/TipoEventoCForm.aspx" class="btn btn-sq-lg btn-success">
                             <i class="fa fa-align-left fa-5x"></i>
                             <br />
                             Consulta Tipos de
@@ -92,13 +92,13 @@
                 <h3>Eventos <span class="label label-default"></span></h3>
                 <div class="col-lg-12">
                     <p>
-                        <a href="#" class="btn btn-sq-lg btn-primary">
+                        <a href="/Registros/EventosForm.aspx" class="btn btn-sq-lg btn-primary">
                             <i class="fa fa-hand-peace-o fa-5x"></i>
                             <br />
                             Registro Eventos
                             <br />
                         </a>
-                        <a href="#" class="btn btn-sq-lg btn-success">
+                        <a href="/Consultas/EventosCForm.aspx" class="btn btn-sq-lg btn-success">
                             <i class="fa fa-hand-peace-o fa-5x"></i>
                             <br />
                             Consulta Eventos
@@ -123,13 +123,13 @@
                 <h3>Ventas <span class="label label-default"></span></h3>
                 <div class="col-lg-12">
                     <p>
-                        <a href="#" class="btn btn-sq-lg btn-primary">
+                        <a href="/Registros/VentasForm.aspx" class="btn btn-sq-lg btn-primary">
                             <i class="fa fa-money fa-5x"></i>
                             <br />
                             Registro Ventas
                             <br />
                         </a>
-                        <a href="#" class="btn btn-sq-lg btn-success">
+                        <a href="/Consultas/VentasCForm.aspx" class="btn btn-sq-lg btn-success">
                             <i class="fa fa-money fa-5x"></i>
                             <br />
                             Consulta Ventas

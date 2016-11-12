@@ -124,8 +124,7 @@ namespace GC_Tickets_Web.Registros
 
         protected void NuevoButton_Click(object sender, EventArgs e)
         {
-            // Limpiar();
-            Utilities.ShowToastr(this, "error", "Mensaje", "error");
+            Limpiar();
         }
 
         protected void GuardarButton_Click(object sender, EventArgs e)

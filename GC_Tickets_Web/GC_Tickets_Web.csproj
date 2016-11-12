@@ -59,6 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdmPanel.aspx" />
+    <Content Include="Consultas\EventosCForm.aspx" />
+    <Content Include="Consultas\TipoEventoCForm.aspx" />
+    <Content Include="Consultas\UsuariosCForm.aspx" />
+    <Content Include="Consultas\VentasCForm.aspx" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\font-awesome.min.css" />
     <Content Include="Css\freelancer.min.css" />
@@ -82,8 +86,10 @@
     <Content Include="Js\toastr.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="Menu.aspx" />
+    <Content Include="Registros\EventosForm.aspx" />
     <Content Include="Registros\TipoEventoForm.aspx" />
     <Content Include="Registros\UsuariosForm.aspx" />
+    <Content Include="Registros\VentasForm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +99,34 @@
     </Compile>
     <Compile Include="AdmPanel.aspx.designer.cs">
       <DependentUpon>AdmPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\EventosCForm.aspx.cs">
+      <DependentUpon>EventosCForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultas\EventosCForm.aspx.designer.cs">
+      <DependentUpon>EventosCForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\TipoEventoCForm.aspx.cs">
+      <DependentUpon>TipoEventoCForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultas\TipoEventoCForm.aspx.designer.cs">
+      <DependentUpon>TipoEventoCForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\UsuariosCForm.aspx.cs">
+      <DependentUpon>UsuariosCForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultas\UsuariosCForm.aspx.designer.cs">
+      <DependentUpon>UsuariosCForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\VentasCForm.aspx.cs">
+      <DependentUpon>VentasCForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultas\VentasCForm.aspx.designer.cs">
+      <DependentUpon>VentasCForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -116,6 +150,13 @@
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registros\EventosForm.aspx.cs">
+      <DependentUpon>EventosForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registros\EventosForm.aspx.designer.cs">
+      <DependentUpon>EventosForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Registros\TipoEventoForm.aspx.cs">
       <DependentUpon>TipoEventoForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -129,6 +170,13 @@
     </Compile>
     <Compile Include="Registros\UsuariosForm.aspx.designer.cs">
       <DependentUpon>UsuariosForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registros\VentasForm.aspx.cs">
+      <DependentUpon>VentasForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registros\VentasForm.aspx.designer.cs">
+      <DependentUpon>VentasForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -154,7 +202,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Consultas\" />
     <Folder Include="Reportes\" />
   </ItemGroup>
   <PropertyGroup>
