@@ -58,9 +58,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdmPanel.aspx" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\font-awesome.min.css" />
     <Content Include="Css\freelancer.min.css" />
+    <Content Include="Css\Login.css" />
     <Content Include="Css\toastr.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="img\cubs.jpg" />
@@ -76,11 +78,22 @@
     <Content Include="Js\freelancer.min.js" />
     <Content Include="Js\jqBootstrapValidation.js" />
     <Content Include="Js\jquery.min.js" />
+    <Content Include="Js\Login.js" />
     <Content Include="Js\toastr.min.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Menu.aspx" />
+    <Content Include="Registros\TipoEventoForm.aspx" />
+    <Content Include="Registros\UsuariosForm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdmPanel.aspx.cs">
+      <DependentUpon>AdmPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdmPanel.aspx.designer.cs">
+      <DependentUpon>AdmPanel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -95,7 +108,28 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registros\TipoEventoForm.aspx.cs">
+      <DependentUpon>TipoEventoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registros\TipoEventoForm.aspx.designer.cs">
+      <DependentUpon>TipoEventoForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registros\UsuariosForm.aspx.cs">
+      <DependentUpon>UsuariosForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registros\UsuariosForm.aspx.designer.cs">
+      <DependentUpon>UsuariosForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -121,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Consultas\" />
-    <Folder Include="Registros\" />
+    <Folder Include="Reportes\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
