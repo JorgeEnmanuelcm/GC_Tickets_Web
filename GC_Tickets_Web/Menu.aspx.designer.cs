@@ -13,12 +13,12 @@ namespace GC_Tickets_Web {
     public partial class Menu {
         
         /// <summary>
-        /// DataList1 control.
+        /// MenuDataList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.DataList MenuDataList;
     }
 }

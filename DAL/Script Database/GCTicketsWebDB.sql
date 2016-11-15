@@ -1,6 +1,6 @@
-Create database GCTicketsWeb
+Create database GCTicketsWebDB
 
-use GCTicketsWeb
+use GCTicketsWebDB
 
 Create table Usuarios(
 UsuarioId int primary key identity(1,1),

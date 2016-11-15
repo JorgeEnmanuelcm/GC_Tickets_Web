@@ -59,6 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdmPanel.aspx" />
+    <Content Include="App_Data\GCTicketsWebDB.mdf" />
+    <Content Include="App_Data\GCTicketsWebDB_log.ldf">
+      <DependentUpon>GCTicketsWebDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Consultas\EventosCForm.aspx" />
     <Content Include="Consultas\TipoEventoCForm.aspx" />
     <Content Include="Consultas\UsuariosCForm.aspx" />

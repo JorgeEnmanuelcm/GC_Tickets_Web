@@ -21,10 +21,10 @@
 
     <%--Menu de eventos  --%>
     <div class="text-center">
-        <asp:DataList ID="DataList1" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Both" RepeatColumns="4" RepeatDirection="Horizontal" OnSelectedIndexChanged="DataList1_SelectedIndexChanged">
-            <FooterStyle BackColor="White" ForeColor="#000066" />
-            <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
-            <ItemStyle ForeColor="#000066" />
+        <asp:DataList ID="MenuDataList" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" GridLines="Both">
+            <FooterStyle BackColor="#CCCCCC" />
+            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+            <ItemStyle BackColor="White" />
             <ItemTemplate>
                 <table class="auto-style2">
                     <tr>
@@ -59,8 +59,7 @@
                     </tr>
                 </table>
             </ItemTemplate>
-            <SelectedItemStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-
+            <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:DataList>
     </div>
 </asp:Content>

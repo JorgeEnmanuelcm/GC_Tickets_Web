@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Script Database\GCTicketsWeb.sql" />
+    <Content Include="Script Database\GCTicketsWebDB.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

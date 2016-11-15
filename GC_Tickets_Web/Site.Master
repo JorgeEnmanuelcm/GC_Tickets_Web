@@ -59,12 +59,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="hidden">
                             <a href="#page-top"></a>
-                        </li>
-                        <li class="#page-scroll">
-                            <a href="Login.aspx">Log in</a>
-                        </li>
+                        </li>                     
                         <li class="#page-scroll">
                             <a href="/AdmPanel.aspx">Adm Panel</a>
+                        </li>
+                        <li class="#page-scroll">
+                            <a href="/Login.aspx">Log in</a>
+                        </li>
+                        <li class="#page-scroll">
+                            <a href="/Menu.aspx">Menu</a>
                         </li>
                         <li class="page-scroll">
                             <a href="#portfolio">Portfolio</a>
