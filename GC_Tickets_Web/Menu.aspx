@@ -34,7 +34,13 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="FechaEventoLabel" runat="server" Text="Fecha del evento"></asp:Label></td>
+                            <img alt="" height="200" width="200" src='<%# Eval("Imagen") %>' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="FechaEventoLabel" runat="server" Text="Fecha del evento"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td>

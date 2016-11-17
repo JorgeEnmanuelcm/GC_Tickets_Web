@@ -19,6 +19,20 @@
         </div>
     </div>
 
+    <%--Flayer--%>
+    <div class="form-group">
+        <div class="text-center">
+            <asp:Image ID="Imagen" runat="server" CssClass="avatar" Height="200px" Width="200px" ImageUrl="/Flayers/imagen.jpg" />
+        </div>
+        <br />
+        <br />
+        <div class="col-md-6 col-xs-8">
+            <asp:FileUpload ID="ImagenFileUpload" runat="server" CssClass="file-field input-field" BorderStyle="Groove" ViewStateMode="Enabled" />
+        </div>
+        <asp:Button ID="ImagenButton" runat="server" CssClass="btn btn-info" Text="Cargar" OnClick="ImagenButton_Click" />
+    </div>
+    <br />
+
     <%--EventoId--%>
     <div class="form-group">
         <div class="col-md-12">

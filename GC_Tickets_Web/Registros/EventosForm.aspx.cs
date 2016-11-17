@@ -34,6 +34,7 @@ namespace GC_Tickets_Web.Registros
             DescTicketTextBox.Text = string.Empty;
             CantDisponibleTextBox.Text = string.Empty;
             PrecioTicketTextBox.Text = string.Empty;
+            Imagen.ImageUrl = "/Flayers/imagen.jpg";
             EventosGridView.DataSource = string.Empty;
             EventosGridView.DataBind();
         }
@@ -86,6 +87,7 @@ namespace GC_Tickets_Web.Registros
             if (LugarEventoTextBox.Text.Length > 0)
             {
                 Evento.LugarEvento = LugarEventoTextBox.Text;
+                Evento.Imagen = Imagen.ImageUrl;
             }
             else
             {
@@ -112,6 +114,7 @@ namespace GC_Tickets_Web.Registros
             NombreEventoTextBox.Text = Evento.NombreEvento.ToString();
             FechaEventoTextBox.Text = Evento.FechaEvento.ToString();
             LugarEventoTextBox.Text = Evento.LugarEvento.ToString();
+            Imagen.ImageUrl = Evento.Imagen;
             foreach (var item in Evento.Detalle)
             {
                 dt = (DataTable)ViewState["EventosClass"];
@@ -218,6 +221,17 @@ namespace GC_Tickets_Web.Registros
                 {
                     Utilities.ShowToastr(this, "error", "Mensaje", "error");
                 }
+            }
+        }
+
+        protected void ImagenButton_Click(object sender, EventArgs e)
+        {
+            EventosClass Evento = new EventosClass();
+            Evento.Imagen = "/Flayers/" + ImagenFileUpload.FileName;
+            ImagenFileUpload.SaveAs(Server.MapPath("/Flayers/" + ImagenFileUpload.FileName));
+            if (ImagenFileUpload.HasFile)
+            {
+                Imagen.ImageUrl = "/Flayers/" + ImagenFileUpload.FileName;
             }
         }
     }

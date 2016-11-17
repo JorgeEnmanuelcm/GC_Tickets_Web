@@ -73,6 +73,7 @@
     <Content Include="Css\Login.css" />
     <Content Include="Css\toastr.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Flayers\imagen.jpg" />
     <Content Include="Global.asax" />
     <Content Include="img\cubs.jpg" />
     <Content Include="img\ep.png" />

@@ -14,6 +14,7 @@ namespace BLL
         public string NombreEvento { get; set; }
         public string FechaEvento { get; set; }
         public string LugarEvento { get; set; }
+        public string Imagen { get; set; }
         public List<EventosDetalleClass> Detalle { get; set; }
 
         public EventosClass()
@@ -23,6 +24,7 @@ namespace BLL
             this.NombreEvento = "";
             this.FechaEvento = "";
             this.LugarEvento = "";
+            this.Imagen = "";
             this.Detalle = new List<EventosDetalleClass>();
         }
 
@@ -43,7 +45,7 @@ namespace BLL
             object Identity;
             try
             {
-                Identity = Conexion.ObtenerValor(String.Format("Insert Into Eventos(TipoEventoId, NombreEvento, FechaEvento, LugarEvento) values({0}, '{1}', '{2}', '{3}') select @@IDENTITY", this.TipoEventoId, this.NombreEvento, this.FechaEvento, this.LugarEvento));
+                Identity = Conexion.ObtenerValor(String.Format("Insert Into Eventos(TipoEventoId, NombreEvento, FechaEvento, LugarEvento, Imagen) values({0}, '{1}', '{2}', '{3}', '{4}') select SCOPE_IDENTITY()", this.TipoEventoId, this.NombreEvento, this.FechaEvento, this.LugarEvento, this.Imagen));
                 Retorno = Utilities.intConvertir(Identity.ToString());
                 this.EventoId = Retorno;
                 if (Retorno > 0)
@@ -68,7 +70,7 @@ namespace BLL
             bool Retorno = false;
             try
             {
-                Retorno = Conexion.Ejecutar(String.Format("Update Eventos set TipoEventoId={0}, NombreEvento='{1}', FechaEvento='{2}', LugarEvento='{3}' where EventoId= {4}", this.TipoEventoId, this.NombreEvento, this.FechaEvento, this.LugarEvento, this.EventoId));
+                Retorno = Conexion.Ejecutar(String.Format("Update Eventos set TipoEventoId={0}, NombreEvento='{1}', FechaEvento='{2}', LugarEvento='{3}', Imagen='{4}' where EventoId= {5}", this.TipoEventoId, this.NombreEvento, this.FechaEvento, this.LugarEvento, this.Imagen,this.EventoId));
                 if (Retorno)
                 {
                     Conexion.Ejecutar(String.Format("Delete from EventosDetalle Where EventoId= {0}", this.EventoId));
@@ -114,6 +116,7 @@ namespace BLL
                     this.NombreEvento = dt.Rows[0]["NombreEvento"].ToString();
                     this.FechaEvento = dt.Rows[0]["FechaEvento"].ToString();
                     this.LugarEvento = dt.Rows[0]["LugarEvento"].ToString();
+                    this.Imagen = dt.Rows[0]["Imagen"].ToString();
                     dtEventDetalle = Conexion.ObtenerDatos(String.Format("select * from EventosDetalle where EventoId=" + IdBuscado));
                     dtEventDetalle.Clear();
                     foreach (DataRow row in dtEventDetalle.Rows)
@@ -162,7 +165,7 @@ namespace BLL
         {
             ConexionDB Conexion = new ConexionDB();
             DataTable dt = new DataTable();
-            dt = Conexion.ObtenerDatos("select NombreEvento, FechaEvento, LugarEvento from Eventos");
+            dt = Conexion.ObtenerDatos("select NombreEvento, Imagen, FechaEvento, LugarEvento from Eventos");
             return dt;
         }
     }

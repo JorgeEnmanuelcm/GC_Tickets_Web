@@ -13,6 +13,33 @@ namespace GC_Tickets_Web.Registros {
     public partial class EventosForm {
         
         /// <summary>
+        /// Imagen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Imagen;
+        
+        /// <summary>
+        /// ImagenFileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ImagenFileUpload;
+        
+        /// <summary>
+        /// ImagenButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ImagenButton;
+        
+        /// <summary>
         /// EventoIdLabel control.
         /// </summary>
         /// <remarks>

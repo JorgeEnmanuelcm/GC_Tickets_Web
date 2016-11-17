@@ -24,7 +24,8 @@ EventoId int primary key identity(1,1),
 TipoEventoId int,
 NombreEvento varchar(32),
 FechaEvento varchar(12),
-LugarEvento varchar(32)
+LugarEvento varchar(32),
+Imagen varchar(280)
 )
 
 create table EventosDetalle(
