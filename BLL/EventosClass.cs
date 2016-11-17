@@ -44,7 +44,7 @@ namespace BLL
             try
             {
                 Identity = Conexion.ObtenerValor(String.Format("Insert Into Eventos(TipoEventoId, NombreEvento, FechaEvento, LugarEvento) values({0}, '{1}', '{2}', '{3}') select @@IDENTITY", this.TipoEventoId, this.NombreEvento, this.FechaEvento, this.LugarEvento));
-                int.TryParse(Identity.ToString(), out Retorno);
+                Retorno = Utilities.intConvertir(Identity.ToString());
                 this.EventoId = Retorno;
                 if (Retorno > 0)
                 {

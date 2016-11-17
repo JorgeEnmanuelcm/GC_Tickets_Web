@@ -25,8 +25,7 @@ namespace GC_Tickets_Web.Registros
         private bool ObtenerDatos()
         {
             bool Retorno = true;
-            int id;
-            int.TryParse(TipoEventoIdTextBox.Text, out id);
+            int id = Utilities.intConvertir(TipoEventoIdTextBox.Text);           
             if (id > 0)
             {
                 TipoEvento.TipoEventoId = id;
@@ -121,8 +120,7 @@ namespace GC_Tickets_Web.Registros
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
-            int id;
-            int.TryParse(TipoEventoIdTextBox.Text, out id);
+            int id = Utilities.intConvertir(TipoEventoIdTextBox.Text);
             if (id < 0)
             {
                 Utilities.ShowToastr(this, "error", "Mensaje", "error");
