@@ -36,4 +36,18 @@ CantDisponible int,
 PrecioTicket int
 )
 
---create table Ventas()
+create table Ventas(
+VentaId int primary key identity(1,1),
+UsuarioId int,
+Fecha varchar(14),
+Descripcion varchar(24),
+Total int
+)
+
+create table VentasDetalle(
+Id int primary key identity(1,1),
+VentaId int,
+EventoId int,
+Ticket int,
+Cantidad int
+)
