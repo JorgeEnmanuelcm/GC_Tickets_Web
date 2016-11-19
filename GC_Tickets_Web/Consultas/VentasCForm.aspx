@@ -19,6 +19,31 @@
         </div>
     </div>
 
+    <%--FiltroFecha--%>
+    <div class="form-group">
+        <div class="col-md-12">
+            <asp:Label ID="FechaLabel" For="FechaCheckBox" runat="server" Font-Bold="True" Text="Filtro por Fechas:"></asp:Label>
+        </div>
+        <asp:CheckBox ID="FechaCheckBox" runat="server" class="input-sm" />
+        <div class="col-md-12">
+            <asp:Label ID="DesdeLabel" For="DesdeTextBox" runat="server" Font-Bold="True" Text="Desde:"></asp:Label>
+        </div>
+        <div class="col-md-6 col-xs-8">
+            <asp:TextBox ID="DesdeTextBox" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-12">
+            <asp:Label ID="HastaLabel" For="HastaTextBox" runat="server" Font-Bold="True" Text="Hasta:"></asp:Label>
+        </div>
+        <div class="col-md-6 col-xs-8">
+            <asp:TextBox ID="HastaTextBox" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
     <%--Componentes--%>
     <div class="form-group">
         <div class="col-md-12">

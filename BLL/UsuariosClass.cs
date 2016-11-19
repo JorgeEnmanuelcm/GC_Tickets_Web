@@ -44,13 +44,6 @@ namespace BLL
             this.Contrasenia = contrasenia;
         }
 
-        public static int Enteros(string NumeroEntero)
-        {
-            int numero;
-            int.TryParse(NumeroEntero, out numero);
-            return numero;
-        }
-
         public override bool Insertar()
         {
             ConexionDB Conexion = new ConexionDB();
@@ -99,7 +92,7 @@ namespace BLL
                 dt = Conexion.ObtenerDatos("Select * from Usuarios Where UsuarioId=" + IdBuscado);
                 if (dt.Rows.Count > 0)
                 {
-                    this.UsuarioId = Enteros(dt.Rows[0]["UsuarioId"].ToString());
+                    this.UsuarioId = (int)dt.Rows[0]["UsuarioId"];
                     this.Nombres = dt.Rows[0]["Nombres"].ToString();
                     this.Apellidos = dt.Rows[0]["Apellidos"].ToString();
                     this.Telefono = dt.Rows[0]["Telefono"].ToString();
@@ -122,6 +115,25 @@ namespace BLL
             return Conexion.ObtenerDatos(("Select " + Campos + " from Usuarios where " + Condicion + ordenar));
         }
 
+        public bool UnicoUsuario(string UnicoUsuario)
+        {
+            ConexionDB Conexion = new ConexionDB();
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = Conexion.ObtenerDatos(string.Format("select * from Usuarios where NombreUsuario= '" + UnicoUsuario + "'"));
+                if (dt.Rows.Count > 0)
+                {
+                    this.UsuarioId = (int)dt.Rows[0]["UsuarioId"];
+                    this.NombreUsuario = dt.Rows[0]["NombreUsuario"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt.Rows.Count > 0;
+        }
 
         public static DataTable ListadoDt(string Condicion)
         {

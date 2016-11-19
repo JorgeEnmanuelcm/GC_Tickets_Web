@@ -18,6 +18,7 @@ namespace GC_Tickets_Web.Registros
                 FechaTextBox.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 CargarDropDownList();
                 CargarGridview();
+                EliminarButton.Enabled = false;
                 VentasClass Venta = new VentasClass();
                 int Id = 0;
                 if (Request.QueryString["ID"] != null)
@@ -153,6 +154,8 @@ namespace GC_Tickets_Web.Registros
         protected void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
+            EliminarButton.Enabled = false;
+            GuardarButton.Text = "Guardar";
         }
 
         protected void AgregarButton_Click(object sender, EventArgs e)
@@ -172,7 +175,7 @@ namespace GC_Tickets_Web.Registros
         protected void GuardarButton_Click(object sender, EventArgs e)
         {
             VentasClass Venta = new VentasClass();
-            if (VentaIdTextBox.Text.Length == 0)
+            if (string.IsNullOrWhiteSpace(VentaIdTextBox.Text))
             {
                 ObtenerDatos(Venta);
                 if (Venta.Insertar())
@@ -191,6 +194,8 @@ namespace GC_Tickets_Web.Registros
                 if (Venta.Editar())
                 {
                     Limpiar();
+                    EliminarButton.Enabled = false;
+                    GuardarButton.Text = "Guardar";
                     Utilities.ShowToastr(this, "bien", "Se modifico con exito!", "success");
                 }
                 else
@@ -211,6 +216,8 @@ namespace GC_Tickets_Web.Registros
                     if (Venta.Eliminar())
                     {
                         Limpiar();
+                        EliminarButton.Enabled = false;
+                        GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se elimino con exito!", "success");
                     }
                     else
@@ -227,7 +234,25 @@ namespace GC_Tickets_Web.Registros
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Consultas/VentasCForm.aspx");
+            VentasClass Venta = new VentasClass();
+            int id = Utilities.intConvertir(VentaIdTextBox.Text);
+            if (id < 0)
+            {
+                Utilities.ShowToastr(this, "error", "Mensaje", "error");
+            }
+            else
+            {
+                if (Venta.Buscar(id))
+                {
+                    EliminarButton.Enabled = true;
+                    GuardarButton.Text = "Modificar";
+                    DevolverDatos(Venta);
+                }
+                else
+                {
+                    Utilities.ShowToastr(this, "error", "Mensaje", "error");
+                }
+            }
         }
     }
 }

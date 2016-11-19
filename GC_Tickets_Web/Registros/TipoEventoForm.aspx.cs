@@ -10,10 +10,9 @@ namespace GC_Tickets_Web.Registros
 {
     public partial class TipoEventoForm : System.Web.UI.Page
     {
-        TipoEventoClass TipoEvento = new TipoEventoClass();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            EliminarButton.Enabled = false;
         }
 
         private void Limpiar()
@@ -22,7 +21,7 @@ namespace GC_Tickets_Web.Registros
             DescripcionTextBox.Text = string.Empty;
         }
 
-        private bool ObtenerDatos()
+        private bool ObtenerDatos(TipoEventoClass TipoEvento)
         {
             bool Retorno = true;
             int id = Utilities.intConvertir(TipoEventoIdTextBox.Text);           
@@ -45,7 +44,7 @@ namespace GC_Tickets_Web.Registros
             return Retorno;
         }
 
-        private void DevolverDatos()
+        private void DevolverDatos(TipoEventoClass TipoEvento)
         {
             TipoEventoIdTextBox.Text = TipoEvento.TipoEventoId.ToString();
             DescripcionTextBox.Text = TipoEvento.Descripcion.ToString();
@@ -54,10 +53,13 @@ namespace GC_Tickets_Web.Registros
         protected void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
+            EliminarButton.Enabled = false;
+            GuardarButton.Text = "Guardar";
         }
 
         protected void GuardarButton_Click(object sender, EventArgs e)
         {
+            TipoEventoClass TipoEvento = new TipoEventoClass();
             if (TipoEvento.UnicaDescripcion(DescripcionTextBox.Text))
             {
                 Utilities.ShowToastr(this, "error", "Ese tipo de evento ya existe!", "error");
@@ -65,9 +67,9 @@ namespace GC_Tickets_Web.Registros
             }
             else
             {
-                if (TipoEventoIdTextBox.Text.Length == 0)
+                if (string.IsNullOrWhiteSpace(TipoEventoIdTextBox.Text))
                 {
-                    ObtenerDatos();
+                    ObtenerDatos(TipoEvento);
                     if (TipoEvento.Insertar())
                     {
                         Limpiar();
@@ -80,10 +82,12 @@ namespace GC_Tickets_Web.Registros
                 }
                 if (TipoEventoIdTextBox.Text.Length > 0)
                 {
-                    ObtenerDatos();
+                    ObtenerDatos(TipoEvento);
                     if (TipoEvento.Editar())
                     {
                         Limpiar();
+                        EliminarButton.Enabled = false;
+                        GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se modifico con exito!", "success");
                     }
                     else
@@ -96,14 +100,17 @@ namespace GC_Tickets_Web.Registros
 
         protected void EliminarButton_Click(object sender, EventArgs e)
         {
+            TipoEventoClass TipoEvento = new TipoEventoClass();
             try
             {
-                ObtenerDatos();
+                ObtenerDatos(TipoEvento);
                 if (TipoEvento.Buscar(TipoEvento.TipoEventoId))
                 {
                     if (TipoEvento.Eliminar())
                     {
                         Limpiar();
+                        EliminarButton.Enabled = false;
+                        GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se elimino con exito!", "success");
                     }
                     else
@@ -120,6 +127,7 @@ namespace GC_Tickets_Web.Registros
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
+            TipoEventoClass TipoEvento = new TipoEventoClass();
             int id = Utilities.intConvertir(TipoEventoIdTextBox.Text);
             if (id < 0)
             {
@@ -129,7 +137,9 @@ namespace GC_Tickets_Web.Registros
             {
                 if (TipoEvento.Buscar(id))
                 {
-                    DevolverDatos();
+                    EliminarButton.Enabled = true;
+                    GuardarButton.Text = "Modificar";
+                    DevolverDatos(TipoEvento);
                 }
                 else
                 {

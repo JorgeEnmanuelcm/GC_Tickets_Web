@@ -10,12 +10,11 @@ namespace GC_Tickets_Web.Registros
 {
     public partial class UsuariosForm : System.Web.UI.Page
     {
-        UsuariosClass Usuario = new UsuariosClass(); 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
+                EliminarButton.Enabled = false;
             }
         }
 
@@ -31,7 +30,7 @@ namespace GC_Tickets_Web.Registros
             ContraseniaTextBox.Text = string.Empty;
         }
 
-        private bool ObtenerDatos()
+        private bool ObtenerDatos(UsuariosClass Usuario)
         {
             bool Retorno = true;
             int id = Utilities.intConvertir(UsuarioIdTextBox.Text);
@@ -110,7 +109,7 @@ namespace GC_Tickets_Web.Registros
             return Retorno;
         }
 
-        public void DevolverDatos()
+        public void DevolverDatos(UsuariosClass Usuario)
         {
             UsuarioIdTextBox.Text = Usuario.UsuarioId.ToString();
             NombresTextBox.Text = Usuario.Nombres.ToString();
@@ -124,40 +123,55 @@ namespace GC_Tickets_Web.Registros
         protected void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
+            EliminarButton.Enabled = false;
+            GuardarButton.Text = "Guardar";
         }
 
         protected void GuardarButton_Click(object sender, EventArgs e)
         {
-            if (ContraseniaTextBox.Text.Trim() != ConfContraseniaTexBox.Text.Trim())
+            UsuariosClass Usuario = new UsuariosClass();
+            if (Usuario.UnicoUsuario(NombreUsuarioTextBox.Text))
             {
-                Utilities.ShowToastr(this, "error", "Contraseñas no coindicen!", "error");
+                Utilities.ShowToastr(this, "error", "Ese nombre de usuario ya existe!", "error");
+                NombreUsuarioTextBox.Text = string.Empty;
             }
             else
             {
-                if (UsuarioIdTextBox.Text.Length == 0)
+                if (ContraseniaTextBox.Text.Trim() != ConfContraseniaTexBox.Text.Trim())
                 {
-                    ObtenerDatos();
-                    if (Usuario.Insertar())
-                    {
-                        Limpiar();
-                        Utilities.ShowToastr(this, "bien", "Se guardo con exito!", "success");
-                    }
-                    else
-                    {
-                        Utilities.ShowToastr(this, "error", "Mensaje", "error");
-                    }
+                    Utilities.ShowToastr(this, "error", "Contraseñas no coindicen!", "error");
+                    ContraseniaTextBox.Text = string.Empty;
+                    ConfContraseniaTexBox.Text = string.Empty;
                 }
-                if (UsuarioIdTextBox.Text.Length > 0)
+                else
                 {
-                    ObtenerDatos();
-                    if (Usuario.Editar())
+                    if (string.IsNullOrWhiteSpace(UsuarioIdTextBox.Text))
                     {
-                        Limpiar();
-                        Utilities.ShowToastr(this, "bien", "Se modifico con exito!", "success");
+                        ObtenerDatos(Usuario);
+                        if (Usuario.Insertar())
+                        {
+                            Limpiar();
+                            Utilities.ShowToastr(this, "bien", "Se guardo con exito!", "success");
+                        }
+                        else
+                        {
+                            Utilities.ShowToastr(this, "error", "Mensaje", "error");
+                        }
                     }
-                    else
+                    if (UsuarioIdTextBox.Text.Length > 0)
                     {
-                        Utilities.ShowToastr(this, "error", "error", "error");
+                        ObtenerDatos(Usuario);
+                        if (Usuario.Editar())
+                        {
+                            Limpiar();
+                            EliminarButton.Enabled = false;
+                            GuardarButton.Text = "Guardar";
+                            Utilities.ShowToastr(this, "bien", "Se modifico con exito!", "success");
+                        }
+                        else
+                        {
+                            Utilities.ShowToastr(this, "error", "error", "error");
+                        }
                     }
                 }
             }
@@ -165,14 +179,17 @@ namespace GC_Tickets_Web.Registros
 
         protected void EliminarButton_Click(object sender, EventArgs e)
         {
+            UsuariosClass Usuario = new UsuariosClass();
             try
             {
-                ObtenerDatos();
+                ObtenerDatos(Usuario);
                 if (Usuario.Buscar(Usuario.UsuarioId))
                 {
                     if (Usuario.Eliminar())
                     {
                         Limpiar();
+                        EliminarButton.Enabled = false;
+                        GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se elimino con exito!", "success");
                     }
                     else
@@ -189,6 +206,7 @@ namespace GC_Tickets_Web.Registros
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
+            UsuariosClass Usuario = new UsuariosClass();
             int id = Utilities.intConvertir(UsuarioIdTextBox.Text);
             if (id < 0)
             {
@@ -198,7 +216,9 @@ namespace GC_Tickets_Web.Registros
             {
                 if (Usuario.Buscar(id))
                 {
-                    DevolverDatos();
+                    EliminarButton.Enabled = true;
+                    GuardarButton.Text = "Modificar";
+                    DevolverDatos(Usuario);
                 }
                 else
                 {

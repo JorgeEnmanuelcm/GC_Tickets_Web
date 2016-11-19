@@ -18,23 +18,32 @@ namespace GC_Tickets_Web.Consultas
         private string Buscar(EventosClass Evento)
         {
             string filtro = "";
-            if (string.IsNullOrWhiteSpace(BuscarTextBox.Text))
+            if (!FechaCheckBox.Checked)
             {
-                filtro = "1=1";
-            }
-            else
-            {
-                if (CamposDropDownList.SelectedIndex == 0)
+                if (string.IsNullOrWhiteSpace(BuscarTextBox.Text))
                 {
-                    filtro = "VentaId = " + BuscarTextBox.Text;
+                    filtro = "1=1";
                 }
                 else
                 {
-                    filtro = CamposDropDownList.SelectedValue + " like '%" + BuscarTextBox.Text + "%'";
+                    if (CamposDropDownList.SelectedIndex == 0)
+                    {
+                        filtro = "VentaId = " + BuscarTextBox.Text;
+                    }
+                    else
+                    {
+                        filtro = CamposDropDownList.SelectedValue + " like '%" + BuscarTextBox.Text + "%'";
+                    }
                 }
+                ConsultaGridView.DataSource = Evento.Listado("*", filtro, "");
+                ConsultaGridView.DataBind();
             }
-            ConsultaGridView.DataSource = Evento.Listado("*", filtro, "");
-            ConsultaGridView.DataBind();
+            else
+            {
+                filtro = "Fecha between '" + DesdeTextBox.Text + "' and '" + HastaTextBox.Text + "'";
+                ConsultaGridView.DataSource = Evento.Listado("*", filtro, "");
+                ConsultaGridView.DataBind();
+            }
             return filtro;
         }
 

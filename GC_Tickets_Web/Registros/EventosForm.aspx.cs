@@ -17,6 +17,7 @@ namespace GC_Tickets_Web.Registros
             {
                 CargarDropDownList();
                 CargarGridView();
+                EliminarButton.Enabled = false;
                 EventosClass Evento = new EventosClass();
                 int Id = 0;
                 if (Request.QueryString["ID"] != null)
@@ -128,7 +129,6 @@ namespace GC_Tickets_Web.Registros
         {
             DataTable dt = new DataTable();
             EventoIdTextBox.Text = Evento.EventoId.ToString();
-            //TipoEventoIdDropDownList.SelectedValue = Evento.TipoEventoId.ToString();
             NombreEventoTextBox.Text = Evento.NombreEvento.ToString();
             FechaEventoTextBox.Text = Evento.FechaEvento.ToString();
             LugarEventoTextBox.Text = Evento.LugarEvento.ToString();
@@ -146,6 +146,8 @@ namespace GC_Tickets_Web.Registros
         protected void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
+            EliminarButton.Enabled = false;
+            GuardarButton.Text = "Guardar";
         }
 
         protected void AgregarButton_Click(object sender, EventArgs e)
@@ -170,7 +172,7 @@ namespace GC_Tickets_Web.Registros
             }
             else
             {
-                if (EventoIdTextBox.Text.Length == 0)
+                if (string.IsNullOrWhiteSpace(EventoIdTextBox.Text))
                 {
                     ObtenerDatos(Evento);
                     if (Evento.Insertar())
@@ -189,6 +191,8 @@ namespace GC_Tickets_Web.Registros
                     if (Evento.Editar())
                     {
                         Limpiar();
+                        EliminarButton.Enabled = false;
+                        GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se modifico con exito!", "success");
                     }
                     else
@@ -210,6 +214,8 @@ namespace GC_Tickets_Web.Registros
                     if (Evento.Eliminar())
                     {
                         Limpiar();
+                        EliminarButton.Enabled = false;
+                        GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se elimino con exito!", "success");
                     }
                     else
@@ -226,7 +232,25 @@ namespace GC_Tickets_Web.Registros
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Consultas/EventosCForm.aspx");
+            EventosClass Evento = new EventosClass();
+            int id = Utilities.intConvertir(EventoIdTextBox.Text);
+            if (id < 0)
+            {
+                Utilities.ShowToastr(this, "error", "Mensaje", "error");
+            }
+            else
+            {
+                if (Evento.Buscar(id))
+                {
+                    EliminarButton.Enabled = true;
+                    GuardarButton.Text = "Modificar";
+                    DevolverDatos(Evento);
+                }
+                else
+                {
+                    Utilities.ShowToastr(this, "error", "Mensaje", "error");
+                }
+            }
         }
 
         protected void ImagenButton_Click(object sender, EventArgs e)

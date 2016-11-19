@@ -74,7 +74,7 @@
     <Content Include="Css\toastr.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Flayers\imagen.jpg" />
-    <Content Include="Global.asax" />
+    <Content Include="Global\Global.asax" />
     <Content Include="img\cubs.jpg" />
     <Content Include="img\ep.png" />
     <Content Include="img\favicon.ico" />
@@ -96,6 +96,7 @@
     <Content Include="Registros\TipoEventoForm.aspx" />
     <Content Include="Registros\UsuariosForm.aspx" />
     <Content Include="Registros\VentasForm.aspx" />
+    <Content Include="Reportes\VentasReporte.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebUserControl.ascx" />
   </ItemGroup>
@@ -142,7 +143,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
+    <Compile Include="Global\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
@@ -188,6 +189,13 @@
     <Compile Include="Registros\VentasForm.aspx.designer.cs">
       <DependentUpon>VentasForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\VentasReporte.aspx.cs">
+      <DependentUpon>VentasReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\VentasReporte.aspx.designer.cs">
+      <DependentUpon>VentasReporte.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -218,9 +226,7 @@
       <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reportes\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
