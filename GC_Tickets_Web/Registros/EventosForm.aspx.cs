@@ -11,16 +11,25 @@ namespace GC_Tickets_Web.Registros
 {
     public partial class EventosForm : System.Web.UI.Page
     {
-        EventosClass Evento = new EventosClass();
-        DataTable dt = new DataTable();
-        TipoEventoClass Tipo = new TipoEventoClass();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CargarDropDownList();
-                dt.Columns.AddRange(new DataColumn[3] { new DataColumn("DescTicket"), new DataColumn("CantDisponible"), new DataColumn("PrecioTicket") });
-                ViewState["EventosClass"] = dt;
+                CargarGridView();
+                EventosClass Evento = new EventosClass();
+                int Id = 0;
+                if (Request.QueryString["ID"] != null)
+                {
+                    Id = Utilities.intConvertir(Request.QueryString["ID"].ToString());
+                    if (Evento.Buscar(Id))
+                    {
+                        if (EventosGridView.Rows.Count == 0)
+                        {
+                            DevolverDatos(Evento);
+                        }
+                    }
+                }
             }
         }
 
@@ -39,15 +48,23 @@ namespace GC_Tickets_Web.Registros
             EventosGridView.DataBind();
         }
 
+        private void CargarGridView()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[3] { new DataColumn("DescTicket"), new DataColumn("CantDisponible"), new DataColumn("PrecioTicket") });
+            ViewState["EventosClass"] = dt;
+        }
+
         private void CargarDropDownList()
         {
+            TipoEventoClass Tipo = new TipoEventoClass();
             TipoEventoIdDropDownList.DataSource = Tipo.Listado(" * ", "1=1", "");
             TipoEventoIdDropDownList.DataTextField = "Descripcion";
             TipoEventoIdDropDownList.DataValueField = "TipoEventoId";
             TipoEventoIdDropDownList.DataBind();
         }
 
-        private bool ObtenerDatos()
+        private bool ObtenerDatos(EventosClass Evento)
         {
             bool Retorno = true;
             int id = Utilities.intConvertir(EventoIdTextBox.Text);
@@ -107,8 +124,9 @@ namespace GC_Tickets_Web.Registros
             return Retorno;
         }
 
-        public void DevolverDatos()
+        public void DevolverDatos(EventosClass Evento)
         {
+            DataTable dt = new DataTable();
             EventoIdTextBox.Text = Evento.EventoId.ToString();
             //TipoEventoIdDropDownList.SelectedValue = Evento.TipoEventoId.ToString();
             NombreEventoTextBox.Text = Evento.NombreEvento.ToString();
@@ -122,9 +140,6 @@ namespace GC_Tickets_Web.Registros
                 ViewState["EventosClass"] = dt;
                 EventosGridView.DataSource = (DataTable)ViewState["EventosClass"];
                 EventosGridView.DataBind();
-                CantDisponibleTextBox.Text = string.Empty;
-                PrecioTicketTextBox.Text = string.Empty;
-                EventosGridView.DataSource = string.Empty;
             }
         }
 
@@ -140,10 +155,14 @@ namespace GC_Tickets_Web.Registros
             ViewState["EventosClass"] = dt;
             EventosGridView.DataSource = dt;
             EventosGridView.DataBind();
+            CantDisponibleTextBox.Text = string.Empty;
+            PrecioTicketTextBox.Text = string.Empty;
+            EventosGridView.DataSource = string.Empty;
         }
 
         protected void GuardarButton_Click(object sender, EventArgs e)
         {
+            EventosClass Evento = new EventosClass();
             if (Evento.UnicoEvento(NombreEventoTextBox.Text))
             {
                 Utilities.ShowToastr(this, "error", "Ese evento ya existe!", "error");
@@ -153,7 +172,7 @@ namespace GC_Tickets_Web.Registros
             {
                 if (EventoIdTextBox.Text.Length == 0)
                 {
-                    ObtenerDatos();
+                    ObtenerDatos(Evento);
                     if (Evento.Insertar())
                     {
                         Limpiar();
@@ -166,7 +185,7 @@ namespace GC_Tickets_Web.Registros
                 }
                 if (EventoIdTextBox.Text.Length > 0)
                 {
-                    ObtenerDatos();
+                    ObtenerDatos(Evento);
                     if (Evento.Editar())
                     {
                         Limpiar();
@@ -182,9 +201,10 @@ namespace GC_Tickets_Web.Registros
 
         protected void EliminarButton_Click(object sender, EventArgs e)
         {
+            EventosClass Evento = new EventosClass();
             try
             {
-                ObtenerDatos();
+                ObtenerDatos(Evento);
                 if (Evento.Buscar(Evento.EventoId))
                 {
                     if (Evento.Eliminar())
@@ -206,22 +226,7 @@ namespace GC_Tickets_Web.Registros
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
-            int id = Utilities.intConvertir(EventoIdTextBox.Text);
-            if (id < 0)
-            {
-                Utilities.ShowToastr(this, "error", "Mensaje", "error");
-            }
-            else
-            {
-                if (Evento.Buscar(id))
-                {
-                    DevolverDatos();
-                }
-                else
-                {
-                    Utilities.ShowToastr(this, "error", "Mensaje", "error");
-                }
-            }
+            Response.Redirect("/Consultas/EventosCForm.aspx");
         }
 
         protected void ImagenButton_Click(object sender, EventArgs e)

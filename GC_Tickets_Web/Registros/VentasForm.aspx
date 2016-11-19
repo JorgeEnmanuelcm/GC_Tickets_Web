@@ -27,7 +27,7 @@
         <div class="col-md-6 col-xs-8">
             <asp:TextBox ID="VentaIdTextBox" runat="server" CssClass="form-control" placeholder="Venta Id" MaxLength="4"></asp:TextBox>
         </div>
-        <asp:Button ID="BuscarButton" runat="server" CssClass="btn btn-info" Text="Buscar" />
+        <asp:Button ID="BuscarButton" runat="server" CssClass="btn btn-info" Text="Buscar" OnClick="BuscarButton_Click" />
     </div>
     <br />
 
@@ -37,9 +37,11 @@
             <asp:Label ID="UsuarioIdLabel" For="UsuarioIdTexBox" runat="server" Font-Bold="True" Text="Usuario Id:"></asp:Label>
         </div>
         <div class="col-md-6 col-xs-8">
-            <asp:TextBox ID="UsuarioIdTextBox" runat="server" CssClass="form-control" placeholder="Usuario Id" MaxLength="4" ReadOnly="True"></asp:TextBox>
+            <asp:DropDownList ID="UsuarioIdDropDownList" runat="server" class="btn btn-default dropdown-toggle"></asp:DropDownList>
         </div>
     </div>
+    <br />   
+    <br />
     <br />
 
     <%--Fecha--%>
@@ -55,13 +57,13 @@
     <br />
     <br />
 
-    <%--EventoId--%>
+    <%--Descripcion--%>
     <div class="form-group">
         <div class="col-md-12">
-            <asp:Label ID="EventoIdLabel" For="EventoDropDownList" runat="server" Font-Bold="True" Text="Evento:"></asp:Label>
+            <asp:Label ID="Label1" For="DescripcionTexBox" runat="server" Font-Bold="True" Text="Descripcion:"></asp:Label>
         </div>
         <div class="col-md-6 col-xs-8">
-            <asp:DropDownList ID="EventoDropDownList" runat="server"></asp:DropDownList>
+            <asp:TextBox ID="DescripcionTextBox" runat="server" CssClass="form-control" placeholder="Descripcion" MaxLength="20"></asp:TextBox>
         </div>
     </div>
     <br />
@@ -71,10 +73,23 @@
     <%--EventoId--%>
     <div class="form-group">
         <div class="col-md-12">
+            <asp:Label ID="EventoIdLabel" For="EventoDropDownList" runat="server" Font-Bold="True" Text="Evento:"></asp:Label>
+        </div>
+        <div class="col-md-6 col-xs-8">
+            <asp:DropDownList ID="EventoDropDownList" runat="server" class="btn btn-default dropdown-toggle"></asp:DropDownList>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+    <%--Ticket--%>
+    <div class="form-group">
+        <div class="col-md-12">
             <asp:Label ID="TicketLabel" For="TicketDropDownList" runat="server" Font-Bold="True" Text="Ticket:"></asp:Label>
         </div>
         <div class="col-md-6 col-xs-8">
-            <asp:DropDownList ID="TicketDropDownList" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="TicketDropDownList" runat="server" class="btn btn-default dropdown-toggle"></asp:DropDownList>
         </div>
     </div>
     <br />
@@ -109,7 +124,7 @@
 
     <%--BotonAgregar--%>
     <div class="container">
-        <asp:Button ID="AgregarButton" runat="server" class="btn btn-info btn-block" Text="Agregar" />
+        <asp:Button ID="AgregarButton" runat="server" class="btn btn-info btn-block" Text="Agregar" OnClick="AgregarButton_Click" />
     </div>
     <br />
     <br />
@@ -140,9 +155,9 @@
     <div class="panel-footer">
         <div class="text-center">
             <div class="form-group" style="display: inline-block">
-                <asp:Button Text="Nuevo" class="btn btn-warning btn-sm" runat="server" ID="NuevoButton" />
-                <asp:Button Text="Guardar" class="btn btn-success btn-sm" runat="server" ID="GuardarButton" />
-                <asp:Button Text="Eliminar" class="btn btn-danger btn-sm" runat="server" ID="EliminarButton" />
+                <asp:Button Text="Nuevo" class="btn btn-warning btn-sm" runat="server" ID="NuevoButton" OnClick="NuevoButton_Click" />
+                <asp:Button Text="Guardar" class="btn btn-success btn-sm" runat="server" ID="GuardarButton" OnClick="GuardarButton_Click" />
+                <asp:Button Text="Eliminar" class="btn btn-danger btn-sm" runat="server" ID="EliminarButton" OnClick="EliminarButton_Click" />
             </div>
         </div>
     </div>

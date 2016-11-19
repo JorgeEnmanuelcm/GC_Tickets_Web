@@ -51,6 +51,7 @@ namespace BLL
                     foreach (VentasDetalleClass var in Detalle)
                     {
                         Conexion.Ejecutar(String.Format("Insert into VentasDetalle(VentaId, EventoId, Ticket, Cantidad) Values ({0}, {1}, {2}, {3})", this.VentaId, var.EventoId, var.Ticket, var.Cantidad));
+                        Conexion.Ejecutar(String.Format("Update EventosDetalle set CantDisponible = CantDisponible -" + var.Cantidad + "where EventoId=" + var.EventoId +" and PrecioTicket=" + var.Ticket));
                     }
                 }
             }
