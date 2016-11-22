@@ -17,7 +17,7 @@ namespace GC_Tickets_Web.Registros
             {
                 CargarDropDownList();
                 CargarGridView();
-                EliminarButton.Enabled = false;
+                EliminarButton.Visible = false;
                 EventosClass Evento = new EventosClass();
                 int Id = 0;
                 if (Request.QueryString["ID"] != null)
@@ -146,7 +146,7 @@ namespace GC_Tickets_Web.Registros
         protected void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
-            EliminarButton.Enabled = false;
+            EliminarButton.Visible = false;
             GuardarButton.Text = "Guardar";
         }
 
@@ -191,7 +191,7 @@ namespace GC_Tickets_Web.Registros
                     if (Evento.Editar())
                     {
                         Limpiar();
-                        EliminarButton.Enabled = false;
+                        EliminarButton.Visible = false;
                         GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se modifico con exito!", "success");
                     }
@@ -214,7 +214,7 @@ namespace GC_Tickets_Web.Registros
                     if (Evento.Eliminar())
                     {
                         Limpiar();
-                        EliminarButton.Enabled = false;
+                        EliminarButton.Visible = false;
                         GuardarButton.Text = "Guardar";
                         Utilities.ShowToastr(this, "bien", "Se elimino con exito!", "success");
                     }
@@ -242,7 +242,7 @@ namespace GC_Tickets_Web.Registros
             {
                 if (Evento.Buscar(id))
                 {
-                    EliminarButton.Enabled = true;
+                    EliminarButton.Visible = true;
                     GuardarButton.Text = "Modificar";
                     DevolverDatos(Evento);
                 }

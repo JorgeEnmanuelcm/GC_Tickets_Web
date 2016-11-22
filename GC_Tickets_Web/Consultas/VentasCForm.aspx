@@ -23,8 +23,8 @@
     <div class="form-group">
         <div class="col-md-12">
             <asp:Label ID="FechaLabel" For="FechaCheckBox" runat="server" Font-Bold="True" Text="Filtro por Fechas:"></asp:Label>
-        </div>
         <asp:CheckBox ID="FechaCheckBox" runat="server" class="input-sm" />
+        </div>
         <div class="col-md-12">
             <asp:Label ID="DesdeLabel" For="DesdeTextBox" runat="server" Font-Bold="True" Text="Desde:"></asp:Label>
         </div>
